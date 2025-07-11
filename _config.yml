@@ -1,0 +1,62 @@
+# Claude MultiAgent Framework Documentation
+title: Claude MultiAgent Framework
+description: Full Claude Multi-Agent Development Framework with MCP, VibeCoding, Templates, CI/CD and Monitoring
+url: https://4pach.github.io/Claude-MultiAgent-Framework
+baseurl: /Claude-MultiAgent-Framework
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Social
+author:
+  name: 4pach
+  email: contact@4pach.dev
+  
+twitter:
+  username: 4pach
+
+# SEO
+seo:
+  name: Claude MultiAgent Framework
+  type: Organization
+  links:
+    - https://github.com/4pach/Claude-MultiAgent-Framework
+    - https://boosty.to/4pach
+
+# Navigation
+navigation:
+  - title: Home
+    url: /
+  - title: Quick Start
+    url: /quickstart
+  - title: Architecture
+    url: /architecture
+  - title: API Reference
+    url: /api
+  - title: Examples
+    url: /examples
+  - title: Contributing
+    url: /contributing
+
+# Collections
+collections:
+  docs:
+    output: true
+    permalink: /:collection/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "docs"
+    values:
+      layout: "default"
+      nav_order: 1
