@@ -1,5 +1,14 @@
 # <div align="center">🧠 Claude MultiAgent Framework</div>
 
+<!-- Social Media Preview -->
+<div align="center">
+<img src="https://raw.githubusercontent.com/4pach/Claude-MultiAgent-Framework/main/assets/og_image.png" alt="Claude MultiAgent Framework" width="600">
+</div>
+
+---
+
+
+
 <div align="center">
 
 **Full Claude Multi-Agent Development Framework with MCP, VibeCoding, Templates, CI/CD and Monitoring**
