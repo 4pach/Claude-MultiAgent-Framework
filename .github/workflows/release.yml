@@ -1,0 +1,55 @@
+name: 🚀 Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: 📋 Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Claude MultiAgent Framework ${{ github.ref }}
+        body: |
+          🎉 New release of Claude MultiAgent Framework!
+          
+          ## ✨ What's New
+          - Bug fixes and improvements
+          - Performance optimizations
+          - Enhanced documentation
+          
+          ## 📦 Installation
+          ```bash
+          curl -sSL https://raw.githubusercontent.com/4pach/Claude-MultiAgent-Framework/main/install.sh | bash
+          ```
+          
+          ## 📖 Full Changelog
+          See [CHANGELOG.md](CHANGELOG.md) for complete details.
+        draft: false
+        prerelease: false
+        
+    - name: 🐍 Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.9'
+        
+    - name: 📦 Build package
+      run: |
+        python -m pip install --upgrade pip build
+        python -m build
+        
+    - name: 📤 Upload to PyPI
+      uses: pypa/gh-action-pypi-publish@v1.4.2
+      with:
+        user: __token__
+        password: ${{ secrets.PYPI_API_TOKEN }}
