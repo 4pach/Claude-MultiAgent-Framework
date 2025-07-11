@@ -1,0 +1,57 @@
+{
+  "project": {
+    "name": "telegram-sticker-bot",
+    "description": "Telegram bot for creating AI-generated stickers from user photos",
+    "type": "python",
+    "framework": "aiogram"
+  },
+  "environment": {
+    "python_path": "/home/dmin/projects/telegram_sticker_bot/telegram_sticker_bot",
+    "virtual_env": "venv",
+    "activate_command": "source venv/bin/activate"
+  },
+  "development": {
+    "main_file": "bot/main.py",
+    "test_command": "python -m pytest tests/",
+    "run_command": "PYTHONPATH=/home/dmin/projects/telegram_sticker_bot/telegram_sticker_bot python bot/main.py",
+    "db_init_command": "python -c \"import asyncio; from db.init_db import init_db; asyncio.run(init_db())\"",
+    "requirements_file": "requirements.txt"
+  },
+  "structure": {
+    "source_dirs": ["bot", "services", "db", "config"],
+    "ignore_dirs": ["venv", "storage", "__pycache__", "logs", ".git"],
+    "key_files": [
+      "bot/main.py",
+      "config/config.py", 
+      "db/models.py",
+      "services/image_generation_service.py",
+      "CLAUDE.md"
+    ]
+  },
+  "ai_services": {
+    "replicate": {
+      "api_token_env": "REPLICATE_API_TOKEN",
+      "model": "fofr/face-to-many"
+    },
+    "leonardo": {
+      "api_key_env": "LEONARDO_API_KEY"
+    },
+    "diffusers": {
+      "local": true,
+      "model": "SG161222/Realistic_Vision_V6.0_B1_noVAE"
+    }
+  },
+  "database": {
+    "type": "sqlite",
+    "url": "sqlite+aiosqlite:///./db/database.db",
+    "models": ["User", "Order", "Sticker", "StickerPack", "Transaction"]
+  },
+  "common_tasks": {
+    "start_bot": "PYTHONPATH=/home/dmin/projects/telegram_sticker_bot/telegram_sticker_bot python bot/main.py",
+    "test_db": "python -c \"import asyncio; from db.init_db import init_db; asyncio.run(init_db())\"",
+    "install_deps": "pip install -r requirements.txt",
+    "install_ai_deps": "pip install torch transformers diffusers controlnet_aux opencv-python",
+    "check_logs": "tail -f logs/bot.log",
+    "activate_env": "source venv/bin/activate"
+  }
+}
