@@ -90,15 +90,6 @@ flake8 tests/
 mypy claude_framework/
 ```
 
-### 5. Pre-commit Hooks
-
-Install pre-commit hooks to automatically run checks:
-
-```bash
-pip install pre-commit
-pre-commit install
-```
-
 ## Pull Request Process
 
 ### 1. Create a Branch
@@ -141,7 +132,7 @@ pytest tests/test_your_feature.py
 We follow PEP 8 with some specific conventions:
 
 ```python
-# Good
+# Good example
 class MyAgent(BaseAgent):
     # Agent that processes data
     
@@ -153,29 +144,6 @@ class MyAgent(BaseAgent):
         # Process data and return result
         result = await self._internal_process(data)
         return result
-
-# Bad
-class myagent(BaseAgent):
-    def __init__(self,config):
-        super().__init__()
-        self.config=config
-    
-    def process(self,data):
-        result=self._internal_process(data)
-        return result
-```
-
-### Documentation Style
-
-Use clear, concise documentation:
-
-```python
-def analyze_performance(self, timeframe: str = "24h") -> dict:
-    # Analyze system performance over specified timeframe
-    # Args: timeframe - Time period to analyze (e.g., "1h", "24h", "7d")
-    # Returns: Dictionary containing performance metrics
-    # Raises: ValueError if timeframe format is invalid
-    pass
 ```
 
 ### Commit Messages
@@ -199,126 +167,11 @@ test: add unit tests for agent coordination
 refactor: simplify configuration loading logic
 ```
 
-## Testing Guidelines
-
-### Unit Tests
-
-```python
-import pytest
-from claude_framework import BaseAgent
-
-class TestBaseAgent:
-    def test_agent_initialization(self):
-        agent = BaseAgent()
-        assert agent.role == "BaseAgent"
-        assert agent.status == "ready"
-    
-    @pytest.mark.asyncio
-    async def test_agent_process(self):
-        agent = BaseAgent()
-        result = await agent.process({"test": "data"})
-        assert result is not None
-```
-
-### Integration Tests
-
-```python
-import pytest
-from claude_framework import Framework
-
-class TestFrameworkIntegration:
-    @pytest.mark.asyncio
-    async def test_full_workflow(self):
-        framework = Framework()
-        
-        # Test agent creation
-        agent = framework.create_agent("architect")
-        assert agent is not None
-        
-        # Test task processing
-        result = await agent.process({"task": "test"})
-        assert result["status"] == "completed"
-```
-
-### Test Coverage
-
-Aim for high test coverage:
-
-```bash
-# Check coverage
-pytest --cov=claude_framework --cov-report=html
-
-# View coverage report
-open htmlcov/index.html
-```
-
-## Documentation Guidelines
-
-### API Documentation
-
-Use docstrings for all public methods:
-
-```python
-def create_agent(self, agent_type: str, config: dict = None) -> BaseAgent:
-    # Create a new agent instance
-    # Args: agent_type - Type of agent to create (e.g., "architect", "engineer")
-    #       config - Optional configuration dictionary
-    # Returns: Configured agent instance
-    # Raises: ValueError if agent_type is not supported
-    pass
-```
-
-### README Updates
-
-When adding new features, update the README:
-
-1. Add feature to the feature list
-2. Update installation instructions if needed
-3. Add usage examples
-4. Update the changelog
-
-## Release Process
-
-### Version Numbers
-
-We use semantic versioning (SemVer):
-
-- **Major** (1.0.0): Breaking changes
-- **Minor** (1.1.0): New features, backward compatible
-- **Patch** (1.0.1): Bug fixes, backward compatible
-
-### Creating Releases
-
-1. Update version in `setup.py`
-2. Update `CHANGELOG.md`
-3. Create release notes
-4. Tag the release
-5. Create GitHub release
-
-## Community Guidelines
-
-### Code of Conduct
-
-- Be respectful and inclusive
-- Focus on constructive feedback
-- Help others learn and grow
-- Follow project guidelines
-
-### Getting Help
+## Getting Help
 
 - Check existing issues and discussions
 - Ask questions in GitHub Discussions
-- Join our Discord server
 - Email support for private matters
-
-### Recognition
-
-Contributors will be recognized in:
-
-- `CONTRIBUTORS.md` file
-- Release notes
-- GitHub contributors section
-- Special thanks in major releases
 
 ## License
 
