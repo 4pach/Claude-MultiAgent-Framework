@@ -1,0 +1,1513 @@
+{
+  "analysis_timestamp": "2025-07-11",
+  "framework_analysis": {
+    "core_framework_components": [
+      {
+        "name": "performance_tracker",
+        "path": "monitoring/performance_tracker.py",
+        "component_type": "core",
+        "dependencies": [],
+        "purpose": "Отслеживание производительности MCP",
+        "extractable": true,
+        "template_vars": []
+      },
+      {
+        "name": "cache_manager",
+        "path": "monitoring/cache_manager.py",
+        "component_type": "core",
+        "dependencies": [],
+        "purpose": "Управление кэшированием запросов",
+        "extractable": true,
+        "template_vars": []
+      },
+      {
+        "name": "alert_system",
+        "path": "monitoring/alert_system.py",
+        "component_type": "core",
+        "dependencies": [],
+        "purpose": "Система предупреждений",
+        "extractable": true,
+        "template_vars": [
+          "smtp_port",
+          "email",
+          "password",
+          "recipients",
+          "username",
+          "thresholds",
+          "notification",
+          "smtp_server"
+        ]
+      },
+      {
+        "name": "mcp_monitor",
+        "path": "monitoring/mcp_monitor.py",
+        "component_type": "core",
+        "dependencies": [],
+        "purpose": "Мониторинг системы",
+        "extractable": true,
+        "template_vars": []
+      },
+      {
+        "name": "auto_reporter",
+        "path": "reports/auto_reporter.py",
+        "component_type": "core",
+        "dependencies": [],
+        "purpose": "Автоматическая генерация отчетов",
+        "extractable": true,
+        "template_vars": [
+          "schedule",
+          "charts"
+        ]
+      },
+      {
+        "name": "optimizer_ai",
+        "path": "recommendations/optimizer_ai.py",
+        "component_type": "core",
+        "dependencies": [],
+        "purpose": "ИИ-анализ и рекомендации оптимизации",
+        "extractable": true,
+        "template_vars": []
+      },
+      {
+        "name": "self_optimizer",
+        "path": "autonomous/self_optimizer.py",
+        "component_type": "core",
+        "dependencies": [
+          "monitoring.mcp_monitor",
+          "monitoring.alert_system",
+          "recommendations.optimizer_ai",
+          "monitoring.cache_manager",
+          "monitoring.performance_tracker"
+        ],
+        "purpose": "Автономное самоулучшение",
+        "extractable": true,
+        "template_vars": [
+          "cache",
+          "config",
+          "safety_limits",
+          "analysis_interval_minutes",
+          "auto_apply_threshold",
+          "proposal_expiry_hours",
+          "optimization_categories",
+          "max_pending_proposals",
+          "thresholds",
+          "enabled"
+        ]
+      },
+      {
+        "name": "config_updater",
+        "path": "autonomous/config_updater.py",
+        "component_type": "core",
+        "dependencies": [],
+        "purpose": "Безопасное обновление конфигураций",
+        "extractable": true,
+        "template_vars": [
+          "safety",
+          "validation",
+          "monitoring"
+        ]
+      },
+      {
+        "name": "approval_system",
+        "path": "autonomous/approval_system.py",
+        "component_type": "core",
+        "dependencies": [
+          "autonomous.self_optimizer"
+        ],
+        "purpose": "Интерфейс подтверждения изменений",
+        "extractable": true,
+        "template_vars": [
+          "display",
+          "notification",
+          "auto_approval",
+          "interface"
+        ]
+      }
+    ],
+    "project_specific_components": [
+      {
+        "name": "keyboards",
+        "path": "bot/keyboards.py",
+        "component_type": "project_specific",
+        "dependencies": [
+          "services.prompt_engine.prompt_templates",
+          "config.config"
+        ],
+        "purpose": "Telegram бот (проект-специфичный)",
+        "extractable": false,
+        "template_vars": []
+      },
+      {
+        "name": "messages",
+        "path": "bot/messages.py",
+        "component_type": "project_specific",
+        "dependencies": [],
+        "purpose": "Telegram бот (проект-специфичный)",
+        "extractable": true,
+        "template_vars": []
+      },
+      {
+        "name": "main",
+        "path": "bot/main.py",
+        "component_type": "project_specific",
+        "dependencies": [
+          "config.config",
+          "logs.logging_config"
+        ],
+        "purpose": "Telegram бот (проект-специфичный)",
+        "extractable": false,
+        "template_vars": []
+      },
+      {
+        "name": "states",
+        "path": "bot/states.py",
+        "component_type": "project_specific",
+        "dependencies": [],
+        "purpose": "Telegram бот (проект-специфичный)",
+        "extractable": false,
+        "template_vars": []
+      },
+      {
+        "name": "utils",
+        "path": "bot/utils.py",
+        "component_type": "project_specific",
+        "dependencies": [],
+        "purpose": "Telegram бот (проект-специфичный)",
+        "extractable": true,
+        "template_vars": []
+      },
+      {
+        "name": "start",
+        "path": "bot/handlers/start.py",
+        "component_type": "project_specific",
+        "dependencies": [
+          "services.user_service"
+        ],
+        "purpose": "Telegram бот (проект-специфичный)",
+        "extractable": false,
+        "template_vars": []
+      },
+      {
+        "name": "additional_options",
+        "path": "bot/handlers/additional_options.py",
+        "component_type": "project_specific",
+        "dependencies": [
+          "config.config"
+        ],
+        "purpose": "Telegram бот (проект-специфичный)",
+        "extractable": false,
+        "template_vars": []
+      },
+      {
+        "name": "select_variant",
+        "path": "bot/handlers/select_variant.py",
+        "component_type": "project_specific",
+        "dependencies": [
+          "services.sticker_service",
+          "services.image_generation_service",
+          "services.user_service"
+        ],
+        "purpose": "Telegram бот (проект-специфичный)",
+        "extractable": false,
+        "template_vars": []
+      },
+      {
+        "name": "emotions",
+        "path": "bot/handlers/emotions.py",
+        "component_type": "project_specific",
+        "dependencies": [],
+        "purpose": "Telegram бот (проект-специфичный)",
+        "extractable": false,
+        "template_vars": []
+      },
+      {
+        "name": "quality",
+        "path": "bot/handlers/quality.py",
+        "component_type": "project_specific",
+        "dependencies": [
+          "config.config",
+          "services.image_generation_service",
+          "services.user_service"
+        ],
+        "purpose": "Telegram бот (проект-специфичный)",
+        "extractable": false,
+        "template_vars": []
+      },
+      {
+        "name": "test_stickers",
+        "path": "bot/handlers/test_stickers.py",
+        "component_type": "project_specific",
+        "dependencies": [],
+        "purpose": "Telegram бот (проект-специфичный)",
+        "extractable": true,
+        "template_vars": []
+      },
+      {
+        "name": "full_pack",
+        "path": "bot/handlers/full_pack.py",
+        "component_type": "project_specific",
+        "dependencies": [
+          "services.sticker_service",
+          "config.config",
+          "services.user_service"
+        ],
+        "purpose": "Telegram бот (проект-специфичный)",
+        "extractable": false,
+        "template_vars": []
+      },
+      {
+        "name": "photo",
+        "path": "bot/handlers/photo.py",
+        "component_type": "project_specific",
+        "dependencies": [],
+        "purpose": "Telegram бот (проект-специфичный)",
+        "extractable": false,
+        "template_vars": []
+      },
+      {
+        "name": "image_variants",
+        "path": "bot/handlers/image_variants.py",
+        "component_type": "project_specific",
+        "dependencies": [
+          "services.user_service",
+          "services.sticker_service",
+          "services.image_generation_service",
+          "services.order_service"
+        ],
+        "purpose": "Telegram бот (проект-специфичный)",
+        "extractable": false,
+        "template_vars": []
+      },
+      {
+        "name": "callback",
+        "path": "bot/handlers/callback.py",
+        "component_type": "project_specific",
+        "dependencies": [],
+        "purpose": "Telegram бот (проект-специфичный)",
+        "extractable": true,
+        "template_vars": []
+      },
+      {
+        "name": "style",
+        "path": "bot/handlers/style.py",
+        "component_type": "project_specific",
+        "dependencies": [],
+        "purpose": "Telegram бот (проект-специфичный)",
+        "extractable": false,
+        "template_vars": []
+      },
+      {
+        "name": "main_menu",
+        "path": "bot/menu/main_menu.py",
+        "component_type": "project_specific",
+        "dependencies": [
+          "services.user_service"
+        ],
+        "purpose": "Telegram бот (проект-специфичный)",
+        "extractable": false,
+        "template_vars": []
+      },
+      {
+        "name": "profile",
+        "path": "bot/menu/profile.py",
+        "component_type": "project_specific",
+        "dependencies": [
+          "services.user_service"
+        ],
+        "purpose": "Telegram бот (проект-специфичный)",
+        "extractable": false,
+        "template_vars": []
+      },
+      {
+        "name": "my_stickers",
+        "path": "bot/menu/my_stickers.py",
+        "component_type": "project_specific",
+        "dependencies": [
+          "services.order_service",
+          "services.user_service"
+        ],
+        "purpose": "Telegram бот (проект-специфичный)",
+        "extractable": false,
+        "template_vars": []
+      },
+      {
+        "name": "replicate_client",
+        "path": "services/replicate_client.py",
+        "component_type": "project_specific",
+        "dependencies": [
+          "logs.logging_config"
+        ],
+        "purpose": "Telegram бот (проект-специфичный)",
+        "extractable": true,
+        "template_vars": [
+          "ENV:REPLICATE_API_TOKEN"
+        ]
+      },
+      {
+        "name": "image_processing_service",
+        "path": "services/image_processing_service.py",
+        "component_type": "project_specific",
+        "dependencies": [],
+        "purpose": "Telegram бот (проект-специфичный)",
+        "extractable": true,
+        "template_vars": [
+          "key_env",
+          "url"
+        ]
+      },
+      {
+        "name": "leonardo_client",
+        "path": "services/leonardo_client.py",
+        "component_type": "project_specific",
+        "dependencies": [
+          "logs.logging_config"
+        ],
+        "purpose": "Telegram бот (проект-специфичный)",
+        "extractable": true,
+        "template_vars": [
+          "ENV:LEONARDO_API_KEY",
+          "ENV:LEONARDO_MODEL_ID"
+        ]
+      },
+      {
+        "name": "image_generation_service",
+        "path": "services/image_generation_service.py",
+        "component_type": "project_specific",
+        "dependencies": [
+          "services.prompt_engine.prompt_generator",
+          "services.replicate_client",
+          "services.leonardo_client",
+          "config.config",
+          "logs.logging_config"
+        ],
+        "purpose": "Telegram бот (проект-специфичный)",
+        "extractable": false,
+        "template_vars": []
+      },
+      {
+        "name": "order_service",
+        "path": "services/order_service.py",
+        "component_type": "project_specific",
+        "dependencies": [
+          "services.sticker_service",
+          "config.config",
+          "services.image_generation_service"
+        ],
+        "purpose": "Telegram бот (проект-специфичный)",
+        "extractable": false,
+        "template_vars": []
+      },
+      {
+        "name": "sticker_service",
+        "path": "services/sticker_service.py",
+        "component_type": "project_specific",
+        "dependencies": [
+          "services.telegram_sticker_service",
+          "services.image_processing_service"
+        ],
+        "purpose": "Telegram бот (проект-специфичный)",
+        "extractable": false,
+        "template_vars": []
+      },
+      {
+        "name": "user_service",
+        "path": "services/user_service.py",
+        "component_type": "project_specific",
+        "dependencies": [],
+        "purpose": "Telegram бот (проект-специфичный)",
+        "extractable": false,
+        "template_vars": []
+      },
+      {
+        "name": "telegram_sticker_service",
+        "path": "services/telegram_sticker_service.py",
+        "component_type": "project_specific",
+        "dependencies": [
+          "config.config"
+        ],
+        "purpose": "Telegram бот (проект-специфичный)",
+        "extractable": false,
+        "template_vars": []
+      },
+      {
+        "name": "prompt_templates",
+        "path": "services/prompt_engine/prompt_templates.py",
+        "component_type": "project_specific",
+        "dependencies": [],
+        "purpose": "Telegram бот (проект-специфичный)",
+        "extractable": true,
+        "template_vars": []
+      },
+      {
+        "name": "prompt_generator",
+        "path": "services/prompt_engine/prompt_generator.py",
+        "component_type": "project_specific",
+        "dependencies": [
+          "services.prompt_engine.prompt_templates"
+        ],
+        "purpose": "Telegram бот (проект-специфичный)",
+        "extractable": false,
+        "template_vars": []
+      },
+      {
+        "name": "models",
+        "path": "db/models.py",
+        "component_type": "project_specific",
+        "dependencies": [],
+        "purpose": "Telegram бот (проект-специфичный)",
+        "extractable": false,
+        "template_vars": []
+      },
+      {
+        "name": "init_db",
+        "path": "db/init_db.py",
+        "component_type": "project_specific",
+        "dependencies": [],
+        "purpose": "Telegram бот (проект-специфичный)",
+        "extractable": true,
+        "template_vars": []
+      },
+      {
+        "name": "database",
+        "path": "db/database.py",
+        "component_type": "project_specific",
+        "dependencies": [
+          "config.config"
+        ],
+        "purpose": "Telegram бот (проект-специфичный)",
+        "extractable": true,
+        "template_vars": []
+      },
+      {
+        "name": "config",
+        "path": "config/config.py",
+        "component_type": "project_specific",
+        "dependencies": [],
+        "purpose": "Telegram бот (проект-специфичный)",
+        "extractable": false,
+        "template_vars": [
+          "ENV:STARS_ENABLED",
+          "ENV:REPLICATE_API_TOKEN",
+          "ENV:BOT_TOKEN",
+          "ENV:APIFRAME_API_KEY",
+          "ENV:REDIS_URL",
+          "ENV:BOT_USERNAME",
+          "ENV:DATABASE_URL",
+          "ENV:CRYPTOBOT_API_KEY",
+          "ENV:DALL_E_API_KEY",
+          "ENV:LEONARDO_API_KEY",
+          "ENV:AVAILABLE_STYLES",
+          "ENV:BOT_DISPLAY_NAME",
+          "ENV:HF_API_TOKEN"
+        ]
+      }
+    ],
+    "configuration_layers": {
+      "framework_configs": [],
+      "project_configs": [
+        ".mcp.json",
+        ".claude/settings.local.json"
+      ],
+      "template_variables": []
+    },
+    "template_variables": [
+      {
+        "name": "schedule",
+        "type": "string",
+        "required": false,
+        "default_value": "",
+        "description": "Конфигурационный параметр: schedule"
+      },
+      {
+        "name": "ENV:BOT_TOKEN",
+        "type": "environment",
+        "required": true,
+        "default_value": "",
+        "description": "Конфигурационный параметр: ENV:BOT_TOKEN"
+      },
+      {
+        "name": "recipients",
+        "type": "string",
+        "required": false,
+        "default_value": "",
+        "description": "Конфигурационный параметр: recipients"
+      },
+      {
+        "name": "auto_apply_threshold",
+        "type": "float",
+        "required": false,
+        "default_value": "",
+        "description": "Конфигурационный параметр: auto_apply_threshold"
+      },
+      {
+        "name": "max_pending_proposals",
+        "type": "string",
+        "required": false,
+        "default_value": "",
+        "description": "Конфигурационный параметр: max_pending_proposals"
+      },
+      {
+        "name": "ENV:STARS_ENABLED",
+        "type": "environment",
+        "required": false,
+        "default_value": true,
+        "description": "Конфигурационный параметр: ENV:STARS_ENABLED"
+      },
+      {
+        "name": "ENV:BOT_DISPLAY_NAME",
+        "type": "environment",
+        "required": false,
+        "default_value": "",
+        "description": "Конфигурационный параметр: ENV:BOT_DISPLAY_NAME"
+      },
+      {
+        "name": "cache",
+        "type": "string",
+        "required": false,
+        "default_value": "",
+        "description": "Конфигурационный параметр: cache"
+      },
+      {
+        "name": "smtp_port",
+        "type": "integer",
+        "required": false,
+        "default_value": 8080,
+        "description": "Конфигурационный параметр: smtp_port"
+      },
+      {
+        "name": "password",
+        "type": "string",
+        "required": false,
+        "default_value": "",
+        "description": "Конфигурационный параметр: password"
+      },
+      {
+        "name": "interface",
+        "type": "string",
+        "required": false,
+        "default_value": "",
+        "description": "Конфигурационный параметр: interface"
+      },
+      {
+        "name": "ENV:BOT_USERNAME",
+        "type": "environment",
+        "required": false,
+        "default_value": "",
+        "description": "Конфигурационный параметр: ENV:BOT_USERNAME"
+      },
+      {
+        "name": "username",
+        "type": "string",
+        "required": false,
+        "default_value": "",
+        "description": "Конфигурационный параметр: username"
+      },
+      {
+        "name": "safety_limits",
+        "type": "string",
+        "required": false,
+        "default_value": "",
+        "description": "Конфигурационный параметр: safety_limits"
+      },
+      {
+        "name": "ENV:LEONARDO_MODEL_ID",
+        "type": "environment",
+        "required": false,
+        "default_value": "",
+        "description": "Конфигурационный параметр: ENV:LEONARDO_MODEL_ID"
+      },
+      {
+        "name": "analysis_interval_minutes",
+        "type": "string",
+        "required": false,
+        "default_value": "",
+        "description": "Конфигурационный параметр: analysis_interval_minutes"
+      },
+      {
+        "name": "url",
+        "type": "string",
+        "required": false,
+        "default_value": "",
+        "description": "Конфигурационный параметр: url"
+      },
+      {
+        "name": "validation",
+        "type": "string",
+        "required": false,
+        "default_value": "",
+        "description": "Конфигурационный параметр: validation"
+      },
+      {
+        "name": "optimization_categories",
+        "type": "string",
+        "required": false,
+        "default_value": "",
+        "description": "Конфигурационный параметр: optimization_categories"
+      },
+      {
+        "name": "key_env",
+        "type": "string",
+        "required": false,
+        "default_value": "",
+        "description": "Конфигурационный параметр: key_env"
+      },
+      {
+        "name": "enabled",
+        "type": "boolean",
+        "required": false,
+        "default_value": true,
+        "description": "Конфигурационный параметр: enabled"
+      },
+      {
+        "name": "auto_approval",
+        "type": "string",
+        "required": false,
+        "default_value": "",
+        "description": "Конфигурационный параметр: auto_approval"
+      },
+      {
+        "name": "smtp_server",
+        "type": "string",
+        "required": false,
+        "default_value": "",
+        "description": "Конфигурационный параметр: smtp_server"
+      },
+      {
+        "name": "ENV:HF_API_TOKEN",
+        "type": "environment",
+        "required": true,
+        "default_value": "",
+        "description": "Конфигурационный параметр: ENV:HF_API_TOKEN"
+      },
+      {
+        "name": "config",
+        "type": "string",
+        "required": false,
+        "default_value": "",
+        "description": "Конфигурационный параметр: config"
+      },
+      {
+        "name": "display",
+        "type": "string",
+        "required": false,
+        "default_value": "",
+        "description": "Конфигурационный параметр: display"
+      },
+      {
+        "name": "ENV:AVAILABLE_STYLES",
+        "type": "environment",
+        "required": false,
+        "default_value": "",
+        "description": "Конфигурационный параметр: ENV:AVAILABLE_STYLES"
+      },
+      {
+        "name": "notification",
+        "type": "string",
+        "required": false,
+        "default_value": "",
+        "description": "Конфигурационный параметр: notification"
+      },
+      {
+        "name": "ENV:REPLICATE_API_TOKEN",
+        "type": "environment",
+        "required": true,
+        "default_value": "",
+        "description": "Конфигурационный параметр: ENV:REPLICATE_API_TOKEN"
+      },
+      {
+        "name": "ENV:REDIS_URL",
+        "type": "environment",
+        "required": false,
+        "default_value": "",
+        "description": "Конфигурационный параметр: ENV:REDIS_URL"
+      },
+      {
+        "name": "email",
+        "type": "string",
+        "required": false,
+        "default_value": "",
+        "description": "Конфигурационный параметр: email"
+      },
+      {
+        "name": "ENV:APIFRAME_API_KEY",
+        "type": "environment",
+        "required": true,
+        "default_value": "",
+        "description": "Конфигурационный параметр: ENV:APIFRAME_API_KEY"
+      },
+      {
+        "name": "charts",
+        "type": "string",
+        "required": false,
+        "default_value": "",
+        "description": "Конфигурационный параметр: charts"
+      },
+      {
+        "name": "safety",
+        "type": "string",
+        "required": false,
+        "default_value": "",
+        "description": "Конфигурационный параметр: safety"
+      },
+      {
+        "name": "ENV:DATABASE_URL",
+        "type": "environment",
+        "required": true,
+        "default_value": "",
+        "description": "Конфигурационный параметр: ENV:DATABASE_URL"
+      },
+      {
+        "name": "ENV:CRYPTOBOT_API_KEY",
+        "type": "environment",
+        "required": true,
+        "default_value": "",
+        "description": "Конфигурационный параметр: ENV:CRYPTOBOT_API_KEY"
+      },
+      {
+        "name": "ENV:DALL_E_API_KEY",
+        "type": "environment",
+        "required": true,
+        "default_value": "",
+        "description": "Конфигурационный параметр: ENV:DALL_E_API_KEY"
+      },
+      {
+        "name": "ENV:LEONARDO_API_KEY",
+        "type": "environment",
+        "required": true,
+        "default_value": "",
+        "description": "Конфигурационный параметр: ENV:LEONARDO_API_KEY"
+      },
+      {
+        "name": "proposal_expiry_hours",
+        "type": "string",
+        "required": false,
+        "default_value": "",
+        "description": "Конфигурационный параметр: proposal_expiry_hours"
+      },
+      {
+        "name": "thresholds",
+        "type": "float",
+        "required": false,
+        "default_value": "",
+        "description": "Конфигурационный параметр: thresholds"
+      },
+      {
+        "name": "monitoring",
+        "type": "string",
+        "required": false,
+        "default_value": "",
+        "description": "Конфигурационный параметр: monitoring"
+      }
+    ],
+    "dependencies_map": {
+      "performance_tracker": {
+        "direct_dependencies": [],
+        "reverse_dependencies": [
+          "self_optimizer"
+        ]
+      },
+      "cache_manager": {
+        "direct_dependencies": [],
+        "reverse_dependencies": [
+          "self_optimizer"
+        ]
+      },
+      "alert_system": {
+        "direct_dependencies": [],
+        "reverse_dependencies": [
+          "self_optimizer"
+        ]
+      },
+      "mcp_monitor": {
+        "direct_dependencies": [],
+        "reverse_dependencies": [
+          "self_optimizer"
+        ]
+      },
+      "auto_reporter": {
+        "direct_dependencies": [],
+        "reverse_dependencies": []
+      },
+      "optimizer_ai": {
+        "direct_dependencies": [],
+        "reverse_dependencies": [
+          "self_optimizer"
+        ]
+      },
+      "self_optimizer": {
+        "direct_dependencies": [
+          "monitoring.mcp_monitor",
+          "monitoring.alert_system",
+          "recommendations.optimizer_ai",
+          "monitoring.cache_manager",
+          "monitoring.performance_tracker"
+        ],
+        "reverse_dependencies": [
+          "approval_system"
+        ]
+      },
+      "config_updater": {
+        "direct_dependencies": [],
+        "reverse_dependencies": []
+      },
+      "approval_system": {
+        "direct_dependencies": [
+          "autonomous.self_optimizer"
+        ],
+        "reverse_dependencies": []
+      },
+      "keyboards": {
+        "direct_dependencies": [
+          "services.prompt_engine.prompt_templates",
+          "config.config"
+        ],
+        "reverse_dependencies": []
+      },
+      "messages": {
+        "direct_dependencies": [],
+        "reverse_dependencies": []
+      },
+      "main": {
+        "direct_dependencies": [
+          "config.config",
+          "logs.logging_config"
+        ],
+        "reverse_dependencies": []
+      },
+      "states": {
+        "direct_dependencies": [],
+        "reverse_dependencies": []
+      },
+      "utils": {
+        "direct_dependencies": [],
+        "reverse_dependencies": []
+      },
+      "start": {
+        "direct_dependencies": [
+          "services.user_service"
+        ],
+        "reverse_dependencies": []
+      },
+      "additional_options": {
+        "direct_dependencies": [
+          "config.config"
+        ],
+        "reverse_dependencies": []
+      },
+      "select_variant": {
+        "direct_dependencies": [
+          "services.sticker_service",
+          "services.image_generation_service",
+          "services.user_service"
+        ],
+        "reverse_dependencies": []
+      },
+      "emotions": {
+        "direct_dependencies": [],
+        "reverse_dependencies": []
+      },
+      "quality": {
+        "direct_dependencies": [
+          "config.config",
+          "services.image_generation_service",
+          "services.user_service"
+        ],
+        "reverse_dependencies": []
+      },
+      "test_stickers": {
+        "direct_dependencies": [],
+        "reverse_dependencies": []
+      },
+      "full_pack": {
+        "direct_dependencies": [
+          "services.sticker_service",
+          "config.config",
+          "services.user_service"
+        ],
+        "reverse_dependencies": []
+      },
+      "photo": {
+        "direct_dependencies": [],
+        "reverse_dependencies": []
+      },
+      "image_variants": {
+        "direct_dependencies": [
+          "services.user_service",
+          "services.sticker_service",
+          "services.image_generation_service",
+          "services.order_service"
+        ],
+        "reverse_dependencies": []
+      },
+      "callback": {
+        "direct_dependencies": [],
+        "reverse_dependencies": []
+      },
+      "style": {
+        "direct_dependencies": [],
+        "reverse_dependencies": []
+      },
+      "main_menu": {
+        "direct_dependencies": [
+          "services.user_service"
+        ],
+        "reverse_dependencies": []
+      },
+      "profile": {
+        "direct_dependencies": [
+          "services.user_service"
+        ],
+        "reverse_dependencies": []
+      },
+      "my_stickers": {
+        "direct_dependencies": [
+          "services.order_service",
+          "services.user_service"
+        ],
+        "reverse_dependencies": []
+      },
+      "replicate_client": {
+        "direct_dependencies": [
+          "logs.logging_config"
+        ],
+        "reverse_dependencies": [
+          "image_generation_service"
+        ]
+      },
+      "image_processing_service": {
+        "direct_dependencies": [],
+        "reverse_dependencies": [
+          "sticker_service"
+        ]
+      },
+      "leonardo_client": {
+        "direct_dependencies": [
+          "logs.logging_config"
+        ],
+        "reverse_dependencies": [
+          "image_generation_service"
+        ]
+      },
+      "image_generation_service": {
+        "direct_dependencies": [
+          "services.prompt_engine.prompt_generator",
+          "services.replicate_client",
+          "services.leonardo_client",
+          "config.config",
+          "logs.logging_config"
+        ],
+        "reverse_dependencies": [
+          "select_variant",
+          "quality",
+          "image_variants",
+          "order_service"
+        ]
+      },
+      "order_service": {
+        "direct_dependencies": [
+          "services.sticker_service",
+          "config.config",
+          "services.image_generation_service"
+        ],
+        "reverse_dependencies": [
+          "image_variants",
+          "my_stickers"
+        ]
+      },
+      "sticker_service": {
+        "direct_dependencies": [
+          "services.telegram_sticker_service",
+          "services.image_processing_service"
+        ],
+        "reverse_dependencies": [
+          "select_variant",
+          "full_pack",
+          "image_variants",
+          "order_service"
+        ]
+      },
+      "user_service": {
+        "direct_dependencies": [],
+        "reverse_dependencies": [
+          "start",
+          "select_variant",
+          "quality",
+          "full_pack",
+          "image_variants",
+          "main_menu",
+          "profile",
+          "my_stickers"
+        ]
+      },
+      "telegram_sticker_service": {
+        "direct_dependencies": [
+          "config.config"
+        ],
+        "reverse_dependencies": [
+          "sticker_service"
+        ]
+      },
+      "prompt_templates": {
+        "direct_dependencies": [],
+        "reverse_dependencies": [
+          "keyboards",
+          "prompt_generator"
+        ]
+      },
+      "prompt_generator": {
+        "direct_dependencies": [
+          "services.prompt_engine.prompt_templates"
+        ],
+        "reverse_dependencies": [
+          "image_generation_service"
+        ]
+      },
+      "models": {
+        "direct_dependencies": [],
+        "reverse_dependencies": []
+      },
+      "init_db": {
+        "direct_dependencies": [],
+        "reverse_dependencies": []
+      },
+      "database": {
+        "direct_dependencies": [
+          "config.config"
+        ],
+        "reverse_dependencies": []
+      },
+      "config": {
+        "direct_dependencies": [],
+        "reverse_dependencies": [
+          "keyboards",
+          "main",
+          "additional_options",
+          "quality",
+          "full_pack",
+          "image_generation_service",
+          "order_service",
+          "telegram_sticker_service",
+          "database"
+        ]
+      }
+    },
+    "extractable_patterns": {
+      "core_framework": [
+        "performance_tracker",
+        "cache_manager",
+        "alert_system",
+        "mcp_monitor",
+        "auto_reporter",
+        "optimizer_ai",
+        "self_optimizer",
+        "config_updater",
+        "approval_system"
+      ],
+      "optional_enhancements": [],
+      "project_adapters": [
+        "keyboards",
+        "messages",
+        "main",
+        "states",
+        "utils",
+        "start",
+        "additional_options",
+        "select_variant",
+        "emotions",
+        "quality",
+        "test_stickers",
+        "full_pack",
+        "photo",
+        "image_variants",
+        "callback",
+        "style",
+        "main_menu",
+        "profile",
+        "my_stickers",
+        "replicate_client",
+        "image_processing_service",
+        "leonardo_client",
+        "image_generation_service",
+        "order_service",
+        "sticker_service",
+        "user_service",
+        "telegram_sticker_service",
+        "prompt_templates",
+        "prompt_generator",
+        "models",
+        "init_db",
+        "database",
+        "config"
+      ]
+    }
+  },
+  "template_structure": {
+    "template_info": {
+      "name": "Claude MultiAgent Framework",
+      "version": "1.0.0",
+      "description": "Универсальный фреймворк автономного мультиагентного мониторинга и оптимизации",
+      "author": "Claude MultiAgent System",
+      "license": "MIT"
+    },
+    "project_types": {
+      "basic_monitoring": {
+        "template_name": "Базовый мониторинг",
+        "description": "Простой мониторинг MCP с алертами",
+        "required_components": [
+          "mcp_monitor",
+          "alert_system"
+        ],
+        "optional_components": [
+          "performance_tracker",
+          "cache_manager"
+        ],
+        "config_params": {
+          "monitoring_enabled": true,
+          "alerts_enabled": true,
+          "cache_enabled": false
+        },
+        "project_structure": {
+          "monitoring/": [
+            "mcp_monitor.py",
+            "alert_system.py"
+          ],
+          "config/": [
+            "framework_config.json"
+          ]
+        }
+      },
+      "full_framework": {
+        "template_name": "Полный MultiAgent Framework",
+        "description": "Комплексная система с ИИ-оптимизацией и автономностью",
+        "required_components": [
+          "mcp_monitor",
+          "performance_tracker",
+          "cache_manager",
+          "alert_system",
+          "auto_reporter",
+          "optimizer_ai",
+          "self_optimizer",
+          "approval_system",
+          "config_updater"
+        ],
+        "optional_components": [],
+        "config_params": {
+          "monitoring_enabled": true,
+          "alerts_enabled": true,
+          "cache_enabled": true,
+          "reports_enabled": true,
+          "ai_optimization_enabled": true,
+          "autonomous_mode": true
+        },
+        "project_structure": {
+          "monitoring/": [
+            "mcp_monitor.py",
+            "performance_tracker.py",
+            "cache_manager.py",
+            "alert_system.py"
+          ],
+          "reports/": [
+            "auto_reporter.py",
+            "templates/"
+          ],
+          "recommendations/": [
+            "optimizer_ai.py"
+          ],
+          "autonomous/": [
+            "self_optimizer.py",
+            "approval_system.py",
+            "config_updater.py"
+          ],
+          "config/": [
+            "framework_config.json"
+          ]
+        }
+      },
+      "web_application": {
+        "template_name": "Web приложение с мониторингом",
+        "description": "Мониторинг для Flask/Django приложений",
+        "required_components": [
+          "mcp_monitor",
+          "performance_tracker",
+          "alert_system"
+        ],
+        "optional_components": [
+          "auto_reporter",
+          "cache_manager"
+        ],
+        "config_params": {
+          "web_dashboard_enabled": true,
+          "api_monitoring": true,
+          "database_monitoring": true
+        },
+        "project_structure": {
+          "monitoring/": [
+            "mcp_monitor.py",
+            "performance_tracker.py",
+            "alert_system.py"
+          ],
+          "web/": [
+            "dashboard.py",
+            "api_monitor.py"
+          ],
+          "config/": [
+            "framework_config.json"
+          ]
+        }
+      }
+    },
+    "core_components": [
+      "performance_tracker",
+      "cache_manager",
+      "alert_system",
+      "mcp_monitor",
+      "auto_reporter",
+      "optimizer_ai",
+      "self_optimizer",
+      "config_updater",
+      "approval_system"
+    ],
+    "optional_components": [],
+    "configuration_schema": {
+      "type": "object",
+      "properties": {
+        "schedule": {
+          "type": "string",
+          "description": "Конфигурационный параметр: schedule",
+          "default": ""
+        },
+        "BOT_TOKEN": {
+          "type": "environment",
+          "description": "Конфигурационный параметр: ENV:BOT_TOKEN",
+          "default": ""
+        },
+        "recipients": {
+          "type": "string",
+          "description": "Конфигурационный параметр: recipients",
+          "default": ""
+        },
+        "auto_apply_threshold": {
+          "type": "float",
+          "description": "Конфигурационный параметр: auto_apply_threshold",
+          "default": ""
+        },
+        "max_pending_proposals": {
+          "type": "string",
+          "description": "Конфигурационный параметр: max_pending_proposals",
+          "default": ""
+        },
+        "STARS_ENABLED": {
+          "type": "environment",
+          "description": "Конфигурационный параметр: ENV:STARS_ENABLED",
+          "default": true
+        },
+        "BOT_DISPLAY_NAME": {
+          "type": "environment",
+          "description": "Конфигурационный параметр: ENV:BOT_DISPLAY_NAME",
+          "default": ""
+        },
+        "cache": {
+          "type": "string",
+          "description": "Конфигурационный параметр: cache",
+          "default": ""
+        },
+        "smtp_port": {
+          "type": "integer",
+          "description": "Конфигурационный параметр: smtp_port",
+          "default": 8080
+        },
+        "password": {
+          "type": "string",
+          "description": "Конфигурационный параметр: password",
+          "default": ""
+        },
+        "interface": {
+          "type": "string",
+          "description": "Конфигурационный параметр: interface",
+          "default": ""
+        },
+        "BOT_USERNAME": {
+          "type": "environment",
+          "description": "Конфигурационный параметр: ENV:BOT_USERNAME",
+          "default": ""
+        },
+        "username": {
+          "type": "string",
+          "description": "Конфигурационный параметр: username",
+          "default": ""
+        },
+        "safety_limits": {
+          "type": "string",
+          "description": "Конфигурационный параметр: safety_limits",
+          "default": ""
+        },
+        "LEONARDO_MODEL_ID": {
+          "type": "environment",
+          "description": "Конфигурационный параметр: ENV:LEONARDO_MODEL_ID",
+          "default": ""
+        },
+        "analysis_interval_minutes": {
+          "type": "string",
+          "description": "Конфигурационный параметр: analysis_interval_minutes",
+          "default": ""
+        },
+        "url": {
+          "type": "string",
+          "description": "Конфигурационный параметр: url",
+          "default": ""
+        },
+        "validation": {
+          "type": "string",
+          "description": "Конфигурационный параметр: validation",
+          "default": ""
+        },
+        "optimization_categories": {
+          "type": "string",
+          "description": "Конфигурационный параметр: optimization_categories",
+          "default": ""
+        },
+        "key_env": {
+          "type": "string",
+          "description": "Конфигурационный параметр: key_env",
+          "default": ""
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "Конфигурационный параметр: enabled",
+          "default": true
+        },
+        "auto_approval": {
+          "type": "string",
+          "description": "Конфигурационный параметр: auto_approval",
+          "default": ""
+        },
+        "smtp_server": {
+          "type": "string",
+          "description": "Конфигурационный параметр: smtp_server",
+          "default": ""
+        },
+        "HF_API_TOKEN": {
+          "type": "environment",
+          "description": "Конфигурационный параметр: ENV:HF_API_TOKEN",
+          "default": ""
+        },
+        "config": {
+          "type": "string",
+          "description": "Конфигурационный параметр: config",
+          "default": ""
+        },
+        "display": {
+          "type": "string",
+          "description": "Конфигурационный параметр: display",
+          "default": ""
+        },
+        "AVAILABLE_STYLES": {
+          "type": "environment",
+          "description": "Конфигурационный параметр: ENV:AVAILABLE_STYLES",
+          "default": ""
+        },
+        "notification": {
+          "type": "string",
+          "description": "Конфигурационный параметр: notification",
+          "default": ""
+        },
+        "REPLICATE_API_TOKEN": {
+          "type": "environment",
+          "description": "Конфигурационный параметр: ENV:REPLICATE_API_TOKEN",
+          "default": ""
+        },
+        "REDIS_URL": {
+          "type": "environment",
+          "description": "Конфигурационный параметр: ENV:REDIS_URL",
+          "default": ""
+        },
+        "email": {
+          "type": "string",
+          "description": "Конфигурационный параметр: email",
+          "default": ""
+        },
+        "APIFRAME_API_KEY": {
+          "type": "environment",
+          "description": "Конфигурационный параметр: ENV:APIFRAME_API_KEY",
+          "default": ""
+        },
+        "charts": {
+          "type": "string",
+          "description": "Конфигурационный параметр: charts",
+          "default": ""
+        },
+        "safety": {
+          "type": "string",
+          "description": "Конфигурационный параметр: safety",
+          "default": ""
+        },
+        "DATABASE_URL": {
+          "type": "environment",
+          "description": "Конфигурационный параметр: ENV:DATABASE_URL",
+          "default": ""
+        },
+        "CRYPTOBOT_API_KEY": {
+          "type": "environment",
+          "description": "Конфигурационный параметр: ENV:CRYPTOBOT_API_KEY",
+          "default": ""
+        },
+        "DALL_E_API_KEY": {
+          "type": "environment",
+          "description": "Конфигурационный параметр: ENV:DALL_E_API_KEY",
+          "default": ""
+        },
+        "LEONARDO_API_KEY": {
+          "type": "environment",
+          "description": "Конфигурационный параметр: ENV:LEONARDO_API_KEY",
+          "default": ""
+        },
+        "proposal_expiry_hours": {
+          "type": "string",
+          "description": "Конфигурационный параметр: proposal_expiry_hours",
+          "default": ""
+        },
+        "thresholds": {
+          "type": "float",
+          "description": "Конфигурационный параметр: thresholds",
+          "default": ""
+        },
+        "monitoring": {
+          "type": "string",
+          "description": "Конфигурационный параметр: monitoring",
+          "default": ""
+        }
+      },
+      "required": [
+        "BOT_TOKEN",
+        "HF_API_TOKEN",
+        "REPLICATE_API_TOKEN",
+        "APIFRAME_API_KEY",
+        "DATABASE_URL",
+        "CRYPTOBOT_API_KEY",
+        "DALL_E_API_KEY",
+        "LEONARDO_API_KEY"
+      ]
+    },
+    "initialization_templates": {
+      "basic_init.py": "\n# Базовая инициализация Claude MultiAgent Framework\nfrom monitoring.mcp_monitor import mcp_monitor\nfrom monitoring.alert_system import alert_system\n\ndef initialize_basic_monitoring():\n    print(\"🚀 Инициализация базового мониторинга...\")\n    # Инициализация мониторинга\n    return True\n",
+      "full_init.py": "\n# Полная инициализация Claude MultiAgent Framework\nfrom monitoring.mcp_monitor import mcp_monitor\nfrom monitoring.performance_tracker import performance_tracker\nfrom monitoring.cache_manager import cache_manager\nfrom monitoring.alert_system import alert_system\nfrom reports.auto_reporter import auto_reporter\nfrom recommendations.optimizer_ai import optimizer_ai\nfrom autonomous.self_optimizer import self_optimizer\n\ndef initialize_full_framework():\n    print(\"🚀 Инициализация полного MultiAgent Framework...\")\n    # Инициализация всех компонентов\n    return True\n"
+    },
+    "customization_points": [
+      {
+        "component": "mcp_monitor",
+        "customization_point": "add_custom_metrics",
+        "description": "Добавление пользовательских метрик мониторинга"
+      },
+      {
+        "component": "alert_system",
+        "customization_point": "custom_alert_rules",
+        "description": "Настройка правил предупреждений под проект"
+      },
+      {
+        "component": "auto_reporter",
+        "customization_point": "custom_report_templates",
+        "description": "Создание пользовательских шаблонов отчетов"
+      }
+    ]
+  }
+}
