@@ -9,12 +9,10 @@
 
 <div align="center">
 
-**Full Claude Multi-Agent Development Framework with MCP, VibeCoding, Templates, CI/CD and Monitoring**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![GitHub release](https://img.shields.io/github/release/4pach/Claude-MultiAgent-Framework.svg)](https://github.com/4pach/Claude-MultiAgent-Framework/releases)
-[![CI/CD](https://github.com/4pach/Claude-MultiAgent-Framework/workflows/🧪%20CI/CD%20Pipeline/badge.svg)](https://github.com/4pach/Claude-MultiAgent-Framework/actions)
 [![GitHub stars](https://img.shields.io/github/stars/4pach/Claude-MultiAgent-Framework.svg)](https://github.com/4pach/Claude-MultiAgent-Framework/stargazers)
 
 [🚀 Quick Start](#quick-start) • [📖 Documentation](https://4pach.github.io/Claude-MultiAgent-Framework/) • [💡 Examples](#examples) • [🤝 Contributing](#contributing) • [💖 Sponsor](#sponsor)
@@ -42,7 +40,6 @@ Claude MultiAgent Framework solves these problems by providing:
 ### Real Impact
 - **⏱️ 80% faster project setup** - from hours to minutes
 - **📈 50% reduction in MCP costs** - through intelligent caching
-- **🎯 3x productivity increase** - with automated workflows
 - **🛡️ Zero manual monitoring** - everything tracked automatically
 
 ---
@@ -100,7 +97,6 @@ async def process_data(data):
 ### 🧠 **Multi-Agent Architecture**
 - **6 specialized sub-agents** (Architect, Engineer, Integrator, Critic, Manager, Optimizer)
 - **Autonomous task coordination** with dependency management
-- **Role-based responsibility** for complex workflows
 
 ### 📊 **Comprehensive Monitoring**
 - **Real-time MCP call tracking** with performance metrics
@@ -120,7 +116,6 @@ async def process_data(data):
 ### 🚀 **Production Ready**
 - **8 project templates** (Telegram bots, APIs, CLI tools, ML services)
 - **Cross-platform installers** (Linux, macOS, Windows)
-- **CI/CD ready** with GitHub Actions
 - **Comprehensive validation** with business rules
 
 </td>
